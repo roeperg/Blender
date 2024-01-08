@@ -7,14 +7,6 @@ import os
 import math
 cwd = os. getcwd()
 
-
-"""
-C:\Program Files\Blender Foundation\Blender 3.3\3.3\python\lib\greg_blender.py
-C:\Python Scripts\greg_blender.py
-C:\Users\roepe\AppData\Local\VirtualStore\Program Files\Blender Foundation\Blender 3.3\3.3\python\lib\greg_blender.py
-C:\Users\roepe\PycharmProjects\Blender\greg_blender.py
-"""
-
 C = bpy.context
 
 output_blend =  pathlib.PurePath(__file__).stem
@@ -123,11 +115,14 @@ def processit(thisfont):
 		boolean_difference("fob", "fob_cut", SOLVER='FAST')
 		remove_object("fob_cut")
 		join_objects_by_name(["name", "base", "fob"])
+		scale_object("fob", (12, 12, 4))
 
 processit("BAUHS93")
 bpy.ops.wm.save_as_mainfile(filepath="%s/%s.blend" %(cwd, output_blend))
 bpy.ops.export_mesh.stl(filepath="%s/%s.stl" %(cwd, output_blend))
-
+bpy.ops.wm.quit_blender()
+print("I quit")
+exit(0)
 #  .ttf
 #	fnt = bpy.data.fonts.load('c:/Windows/Fonts/Raybent Mango.ttf')
 #	fnt = bpy.data.fonts.load('c:/Windows/Fonts/comici.ttf')
